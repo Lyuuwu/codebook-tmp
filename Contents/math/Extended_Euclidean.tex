@@ -1,0 +1,14 @@
+給定 $a$, $b$, $c$, 求 $ax + by = c$ 的解
+
+\begin{lstlisting}
+    ll extgcd(ll a, ll b, llc, ll &x, ll &y){
+        if(b == 0){
+            x = c/a ;
+            y = 0 ;
+            return a ;
+        }
+        ll d = extgcd(b, a%b, c, x, y), tmp = x ;
+        x = y ;
+        y = tmp - (a/b)*y ;
+        return d ;
+    }
