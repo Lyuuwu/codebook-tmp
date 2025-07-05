@@ -1,4 +1,4 @@
-\documentclass[10pt,twocolumn,oneside]{article}
+\documentclass[6pt,oneside]{article}
 \setlength{\columnsep}{18pt}                    %兩欄模式的間距
 \setlength{\columnseprule}{0pt}                 %兩欄模式間格線粗細
 
@@ -10,7 +10,9 @@
 \usepackage{listings}                           %顯示code用的
 \usepackage{fancyhdr}                           %設定頁首頁尾
 \usepackage{graphicx}                           %Graphic
+\usepackage{tikz}     
 \usepackage{enumerate}
+% \usepackage{enumitem}                           % codebook build 沒有這個
 \usepackage{titlesec}
 \usepackage{amsmath}
 \usepackage[CheckSingle, CJKmath]{xeCJK}
@@ -19,16 +21,52 @@
 \usepackage{amsmath, courier, listings, fancyhdr, graphicx}
 \topmargin=0pt
 \headsep=5pt
-\textheight=740pt
+\textheight=750pt
 \footskip=0pt
-\voffset=-50pt
-\textwidth=545pt
+\voffset=-65pt
+\textwidth=580pt
 \marginparsep=0pt
 \marginparwidth=0pt
 \marginparpush=0pt
 \oddsidemargin=0pt
 \evensidemargin=0pt
-\hoffset=-42pt
+\hoffset=-55pt
+
+% 以下為改變section的行高
+\makeatletter
+\let\origsection\section
+\renewcommand\section{\@ifstar{\starsection}{\nostarsection}}
+
+\newcommand\nostarsection[1]
+{\sectionprelude\origsection{#1}\sectionpostlude}
+
+\newcommand\starsection[1]
+{\sectionprelude\origsection*{#1}\sectionpostlude}
+
+% \newcommand\sectionprelude{%
+%   \vspace{-20pt} % 改這個數字
+% }
+% \newcommand\sectionpostlude{%
+%   \vspace{-15pt} % 改這個數字
+% }
+\newcommand\sectionprelude{%
+  \vspace{-5pt} % 改這個數字
+}
+\newcommand\sectionpostlude{%
+  \vspace{-5pt} % 改這個數字
+}
+\makeatother
+
+% 設定column數
+\usepackage{multicol}
+\newcommand{\NumberOfColumn}{3}
+
+% \usepackage{geometry} % 版面配置
+% \geometry{landscape}
+% \geometry{
+%   left=30pt,
+%   top=50pt,
+% }
 
 %\renewcommand\listfigurename{圖目錄}
 %\renewcommand\listtablename{表目錄}
@@ -48,7 +86,9 @@
     UprightFont={* Medium},
     BoldFont={* Bold}
 ]{Inconsolata}
-\setCJKmainfont{Noto Sans CJK TC}
+\setCJKmainfont[
+  SizeFeatures={Size=6}
+]{Noto Sans CJK TC}
 \XeTeXlinebreaklocale "zh"                      %中文自動換行
 \XeTeXlinebreakskip = 0pt plus 1pt              %設定段落之間的距離
 \setcounter{secnumdepth}{3}                     %目錄顯示第三層
@@ -79,20 +119,27 @@
     keywordstyle=\bfseries\color{Blue1},
     commentstyle=\itshape\color{Red1},
     stringstyle=\itshape\color{Green4},
+    columns=flexible
 }
 
-
 \begin{document}
-\pagestyle{fancy}
-\fancyfoot{}
-\fancyhead[C]{tang tang tang sahura}
-\fancyhead[L]{FJCUUUUUU}
-\fancyhead[R]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\contentsname}{Contents}
+  \begin{multicols}{\NumberOfColumn}
+  \pagestyle{fancy}
+  \fancyfoot{}
+  %\fancyfoot[R]{\includegraphics[width=20pt]{ironwood.jpg}}
+  \fancyhead[C]{FJCUUUUU}
+  \fancyhead[L]{tang tang tang sahura}
+  \fancyhead[R]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\contentsname}{Contents}
 
-\scriptsize
-\tableofcontents
-\input{content.tex}
+  \scriptsize
+  \tableofcontents
+  \columnbreak
+  
+  \raggedcolumns          % 換欄縮減
+  \input{content.tex}
+  \clearpage
 
+  \end{multicols}
 \end{document}
