@@ -1,0 +1,19 @@
+% Listing styles for C++ and Python (kept minimal to inherit global \lstset)
+% Usage:
+%   \cppfile{path/to/file.cpp}
+%   \pyfile{path/to/file.py}
+
+% Define styles: only override language; other keys inherit from global \lstset
+\lstdefinestyle{cxx}{
+  language=C++
+}
+
+\lstdefinestyle{py}{
+  language=Python,
+  morekeywords={self}
+}
+
+% Convenience wrappers
+\newcommand{\cppfile}[1]{\lstinputlisting[style=cxx]{#1}}
+\newcommand{\pyfile}[1]{\lstinputlisting[style=py]{#1}}
+
