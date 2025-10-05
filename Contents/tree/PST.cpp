@@ -1,4 +1,4 @@
-// Find the k-th largest number within a given range
+// Find range k-th largest number
 struct Node{
 	int sum, left, right ;
 }seg[Maxn + 20 * Maxn] ;
