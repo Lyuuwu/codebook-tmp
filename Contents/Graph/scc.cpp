@@ -30,6 +30,20 @@ void dfs(int u, int from){
 	}
 }
 
+// SCC to DAG (after dfs)
+vector<int> dag[Maxn] ;
+
+void scc_to_dag(){
+	vector<int> dag[Maxn] ;
+	for ( int u=1 ; u<=n ; u++ ){
+		for ( auto v : g[u] ){
+			if(sccId[u] != sccId[v]){
+				dag[sccId[u]].push_back(sccId[v]) ;
+			}
+		}
+	}
+}
+
 void init(){
 	memset(dfn, -1, sizeof(dfn)) ;
 	memset(low, -1, sizeof(low)) ;
