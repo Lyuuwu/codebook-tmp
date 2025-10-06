@@ -2,7 +2,7 @@
 % Usage:
 %   \cppfile{path/to/file.cpp}
 %   \pyfile{path/to/file.py}
-%   \javafile{path/to/file.py}
+%   \javafile{path/to/file.java}
 
 % Define styles: only override language; other keys inherit from global \lstset
 \lstdefinestyle{cxx}{
@@ -21,4 +21,5 @@
 % Convenience wrappers
 \newcommand{\cppfile}[1]{\lstinputlisting[style=cxx]{#1}}
 \newcommand{\pyfile}[1]{\lstinputlisting[style=py]{#1}}
+\newcommand{\javafile}[1]{\lstinputlisting[style=java]{#1}}
 
