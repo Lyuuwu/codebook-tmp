@@ -1,0 +1,52 @@
+// 查詢
+int     length()
+boolean isEmpty()
+boolean isBlank()                      // (since 11)
+char    charAt(int index)
+int     codePointAt(int index)
+int     codePointBefore(int index)
+int     codePointCount(int beginIndex, int endIndex)
+boolean contains(CharSequence s)
+boolean startsWith(String prefix[, int toffset])
+boolean endsWith(String suffix)
+int     indexOf(String str[, int fromIndex])
+int     lastIndexOf(String str[, int fromIndex])
+
+// 取子字串/子序列
+String       substring(int beginIndex)
+String       substring(int beginIndex, int endIndex)
+CharSequence subSequence(int beginIndex, int endIndex)
+
+// 比較/等價
+boolean equals(Object obj)
+boolean equalsIgnoreCase(String anotherString)
+int     compareTo(String anotherString)
+int     compareToIgnoreCase(String str)
+boolean matches(String regex)
+boolean regionMatches(int toffset, String other, int ooffset, int len)
+boolean regionMatches(boolean ignoreCase, int toffset, String other, int ooffset, int len)
+
+// 建構/轉換/連接
+String  concat(String str)
+String  replace(char oldChar, char newChar)
+String  replace(CharSequence target, CharSequence replacement)
+String  replaceAll(String regex, String replacement)
+String  replaceFirst(String regex, String replacement)
+String[] split(String regex[, int limit])
+String  toLowerCase()
+String  toUpperCase()
+String  trim()
+String  strip()                         // (since 11)
+String  stripLeading()                  // (since 11)
+String  stripTrailing()                 // (since 11)
+String  repeat(int count)               // (since 11)
+IntStream chars()
+Stream<String> lines()                  // (since 11)
+String  intern()
+
+// 靜態工具
+static String format(String format, Object... args)
+static String join(CharSequence delimiter, CharSequence... elements)
+static String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
+static String valueOf(primitive/char[]/Object)
+static String copyValueOf(char[] data[, int offset, int count])
