@@ -26,7 +26,7 @@ static int max(int a, int b)
 static int sum(int a, int b)
 
 // 位元操作
-static int bitCount(int i)                   // 設定位數
+static int bitCount(int i)      // 設定位數
 static int highestOneBit(int i)
 static int lowestOneBit(int i)
 static int numberOfLeadingZeros(int i)
