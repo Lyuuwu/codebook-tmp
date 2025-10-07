@@ -1,0 +1,32 @@
+\subsubsection*{Combinatorics Cheat Sheet}
+\paragraph{Binomial Coefficient Identities}
+\begin{align*}
+{n \choose k} &= \frac{n!}{k!(n-k)!}, \\
+{n \choose k} &= {n-1 \choose k} + {n-1 \choose k-1}, \\
+\sum_{k=0}^{n} {n \choose k} &= 2^n,\qquad
+\sum_{k=0}^{n} k {n \choose k} = n 2^{n-1}.
+\end{align*}
+
+\paragraph{Stars and Bars}
+非負整數解數量：
+\[
+x_1 + x_2 + \dots + x_k = n \quad \Rightarrow \quad {n + k - 1 \choose k - 1}.
+\]
+若各變數至少為 $1$，將 $x_i = y_i + 1$ 轉為非負情況即可。
+
+\paragraph{Inclusion--Exclusion Principle}
+對集合 $A_1,\dots,A_k$：
+\[
+\left| \bigcup_{i=1}^{k} A_i \right|
+= \sum_{i=1}^{k} |A_i|
+ - \sum_{1 \le i < j \le k} |A_i \cap A_j|
+ + \cdots + (-1)^{k-1} |A_1 \cap \dots \cap A_k|.
+\]
+計算滿足限制的排列或整數解時廣泛使用。
+
+\paragraph{Catalan Numbers}
+基本定義：
+\[
+C_n = \frac{1}{n+1}{2n \choose n},\qquad C_{n+1} = \frac{4n+2}{n+2} C_n.
+\]
+常見應用包含合法括號、凸多邊形三角剖分、二元樹結構計數等。

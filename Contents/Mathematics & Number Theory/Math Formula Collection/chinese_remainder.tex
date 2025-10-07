@@ -1,0 +1,34 @@
+\subsubsection*{Chinese Remainder Theorem}
+設同餘系統
+\[
+x \equiv a_i \pmod{m_i} \quad (i = 1,\dots,k),
+\]
+其中 $m_i$ 兩兩互質，令 $M = \prod_{i=1}^k m_i$，$M_i = M/m_i$，再取 $t_i \equiv M_i^{-1} \pmod{m_i}$。則唯一解（模 $M$）為
+\[
+x \equiv \sum_{i=1}^k a_i M_i t_i \pmod{M}.
+\]
+
+\paragraph{兩式合併（允許非互質）}
+\begin{lstlisting}[language=C++,numbers=left]
+// solve x ≡ a1 (mod m1), x ≡ a2 (mod m2)
+// return {x0, lcm}; if no solution, lcm = -1
+pair<long long, long long> crt(long long a1, long long m1,
+                               long long a2, long long m2) {
+    long long g = std::gcd(m1, m2);
+    if ((a2 - a1) % g != 0) return {0, -1}; // no solution
+
+    long long lcm = m1 / g * m2;
+    long long m1_reduced = m1 / g;
+    long long m2_reduced = m2 / g;
+
+    long long diff = (a2 - a1) / g % m2_reduced;
+    if (diff < 0) diff += m2_reduced;
+
+    long long inv = mod_pow(m1_reduced, m2_reduced - 1, m2_reduced);
+    long long step = diff * inv % m2_reduced;
+    long long x0 = (a1 + step * m1) % lcm;
+    if (x0 < 0) x0 += lcm;
+    return {x0, lcm};
+}
+\end{lstlisting}
+遞增地將每個同餘式與當前解做合併即可取得最終答案，也能偵測無解情況。
