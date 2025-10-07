@@ -1,4 +1,4 @@
-// 單點修改 單點查詢
+// 單點修改 區間查詢
 #define lowbit(x) (x & -x)
 
 int BIT[MAX_SIZE] ;
@@ -10,6 +10,7 @@ void modify(int idx, int val){
     }
 }
 
+// ans: query(R) - query(L-1)
 int query(int idx){
     int sum = 0 ;
     for ( ; idx ; idx -= lowbit(idx) ){
