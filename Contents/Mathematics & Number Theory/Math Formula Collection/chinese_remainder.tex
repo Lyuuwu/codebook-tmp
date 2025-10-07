@@ -13,7 +13,7 @@ x \equiv \sum_{i=1}^k a_i M_i t_i \pmod{M}.
 // solve x ≡ a1 (mod m1), x ≡ a2 (mod m2)
 // return {x0, lcm}; if no solution, lcm = -1
 pair<ll, ll> crt(ll a1, ll m1,
-    ll a2, ll m2) {
+                 ll a2, ll m2) {
     ll g = std::gcd(m1, m2);
     if ((a2 - a1) % g != 0) return {0, -1}; // no solution
 
