@@ -58,3 +58,22 @@ long long mod_pow(long long a, long long b, long long mod) {
 \text{若 } a,b \in \mathbb{Z},\quad \exists x,y \in \mathbb{Z} \text{ 使得 } ax + by = \gcd(a,b).
 \]
 任何方程 $ax + by = c$ 有整數解當且僅當 $\gcd(a,b) \mid c$。擴展歐幾里得演算法可同時求得 $\gcd$ 與一組 $(x,y)$，常用於計算模逆與結合 China Remainder。
+
+\noindent
+\textbf{Extended Euclidean algorithm}
+給定 $a$, $b$, $c$, 求 $ax + by = c$ 的解
+\begin{lstlisting}
+    ll extgcd(ll a, ll b, ll c, ll &x, ll &y){
+        if(b == 0){
+            x = c/a ;
+            y = 0 ;
+            return a ;
+        }
+        ll d = extgcd(b, a%b, c, x, y), tmp = x ;
+        x = y ;
+        y = tmp - (a/b)*y ;
+        return d ;
+    }
+\end{lstlisting}
+
+根據 貝祖定理，只有當 $d \mid c$ 時，$ax + by = c$才有整數解
