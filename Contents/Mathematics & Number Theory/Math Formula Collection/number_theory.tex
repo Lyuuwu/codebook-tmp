@@ -30,3 +30,23 @@ long long mod_pow(long long a, long long b, long long mod) {
 \sum_{d \mid n} \mu(d) \left\lfloor \frac{n}{d} \right\rfloor = 1,
 \]
 其中 $\mu$ 為莫比烏斯函數；常用於反演及計算互質對數量。
+
+\noindent
+\textbf{Modulo Arithmetic Quick Facts}
+\begin{align*}
+(a \pm b) \bmod m &= \bigl((a \bmod m) \pm (b \bmod m)\bigr) \bmod m,\\
+(ab) \bmod m &= \bigl((a \bmod m)(b \bmod m)\bigr) \bmod m,\\
+(a^k) \bmod m &= \bigl((a \bmod m)^k\bigr) \bmod m,\\
+(-a) \bmod m &= (m - (a \bmod m)) \bmod m.
+\end{align*}
+若 $\gcd(a,m)=1$，可計算乘法逆元 $a^{-1}$ 並套用 $(a/b) \bmod m \equiv a \cdot b^{-1} \bmod m$。
+
+\noindent
+\textbf{Congruence ($a \equiv b \pmod m$) Essentials}
+\begin{itemize}
+  \item $a \equiv b \pmod m \iff m \mid (a-b)$，同餘類以差整除判斷。
+  \item $a \equiv b \pmod m \Rightarrow f(a) \equiv f(b) \pmod m$ 對所有以整數係數的多項式 $f$ 成立。
+  \item 若 $a \equiv b \pmod m$ 且 $c \equiv d \pmod m$，則 $a\pm c \equiv b \pm d \pmod m$，$ac \equiv bd \pmod m$。
+  \item 若 $\gcd(k,m)=1$ 且 $ka \equiv kb \pmod m$，可約去 $k$：$a \equiv b \pmod m$。
+  \item 若 $a \equiv b \pmod m$，則 $a \equiv b \pmod d$ 對任何 $d$ 整除 $m$ 亦成立。
+\end{itemize}
