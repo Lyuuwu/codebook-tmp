@@ -88,6 +88,7 @@ long long mod_pow(long long a, long long b, long long mod) {
 \noindent
 根據 貝祖定理，只有當 $d \mid c$ 時，$ax + by = c$才有整數解
 
+\noindent
 對於 $ax + by = c$ 假設有整數解，且 $gcd(a, b) = 1$
 使用exgcd求出 $(a_0, b_0)$ 的特解後，根據逆模元可得出
 通解: $a = a_0 + \frac{b}{d} t$, $b = b_0 - \frac{a}{d} t$
