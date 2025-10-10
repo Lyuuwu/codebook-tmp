@@ -45,9 +45,9 @@ long long mod_pow(long long a, long long b, long long mod) {
 \textbf{Extended Euclidean algorithm}
 給定 $a$, $b$, $c$, 求 $ax + by = c$ 的解
 \begin{lstlisting}
-    ll extgcd(ll a, ll b, ll c, ll &x, ll &y){
+    ll extgcd(ll a, ll b, ll &x, ll &y){
         if(b == 0){
-            x = c/a ;
+            x = 1 ;
             y = 0 ;
             return a ;
         }
@@ -56,6 +56,10 @@ long long mod_pow(long long a, long long b, long long mod) {
         y = tmp - (a/b)*y ;
         return d ;
     }
+
+    // x, y 為 ax + by = gcd(a, b) 的解
+    x = x * c / d ; // ax + by = c 的解
+    y = y * c / d ; // ax + by = c 的解
 \end{lstlisting}
 
 \noindent
