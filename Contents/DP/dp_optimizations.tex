@@ -1,0 +1,57 @@
+% DP 優化技巧筆記（何時可用、條件、複雜度）
+
+\noindent
+\textbf{Monotonic Queue（單調隊列）}
+\begin{itemize}
+  \item 適用情境：轉移為固定寬度窗口的 min/max，例如 $\mathrm{dp}[i]=\mathrm{cost}[i]+\min\limits_{i-W\le j<i} \mathrm{dp}[j]$。
+  \item 條件：窗口僅往右滑動；可用雙端佇列維護候選（按值單調）。
+  \item 複雜度：$O(n)$。
+  \item 範例程式：`Contents/DP/monoqueue_optimization.cpp`。
+\end{itemize}
+
+\noindent
+\textbf{Convex Hull Trick（CHT）/ Li Chao Tree}
+\begin{itemize}
+  \item 目標型態：$\mathrm{dp}[i]=\min\limits_j (m_j\,x_i+b_j)$ 或取最大值的線性包絡。
+  \item Li Chao Tree：對 $x$ 有界時通用，無需斜率與查詢單調；單次操作 $O(\log \text{range})$。
+  \item 單調 CHT：若斜率插入單調且查詢 $x$ 單調，可用雙端隊列 $O(1)$ 攤還。
+  \item 範例程式：`Contents/DP/li_chao_tree.cpp`（Min 版本）。
+\end{itemize}
+
+\noindent
+\textbf{Divide & Conquer DP 優化}
+\begin{itemize}
+  \item 型態：$\mathrm{dp}[k][i]=\min\limits_{j<i}\{\mathrm{dp}[k-1][j]+C(j,i)\}$。
+  \item 條件：存在最優決策單調性 $\operatorname{opt}[k][i]\le \operatorname{opt}[k][i+1]$。
+  \item 複雜度：$O(KN\log N)$ 或 $O(KN)$ 視成本計算而定。
+  \item 範例骨架：`Contents/DP/dnc_dp_optimization.cpp`。
+\end{itemize}
+
+\noindent
+\textbf{Knuth 優化（區間 DP）}
+\begin{itemize}
+  \item 型態：$\mathrm{dp}[l][r]=\min\limits_{l\le k<r}\{\mathrm{dp}[l][k]+\mathrm{dp}[k+1][r]\}+w(l,r)$。
+  \item 條件：$w$ 滿足四邊形不等式，且 $\operatorname{opt}[l][r-1]\le \operatorname{opt}[l][r]\le \operatorname{opt}[l+1][r]$。
+  \item 常見：合併石子、最優二叉搜尋樹、矩陣鏈變形。
+  \item 複雜度：$O(n^2)$。
+  \item 範例骨架：`Contents/DP/knuth_optimization.cpp`。
+\end{itemize}
+
+\noindent
+\textbf{Bitset / SOS / 參數二分（Alien Trick）}
+\begin{itemize}
+  \item Bitset：子集和/背包可用位運算加速，常達 $O(\frac{n W}{w})$，$w$ 為機器字大小。
+  \item SOS DP：對子集函數作快速轉換（FWT/子集捲積），用於子集枚舉與捲積類 DP。
+  \item Alien Trick：在答案上二分，內層用 DP 檢驗可行性，配合 Lagrange 乘子式轉換權重。
+\end{itemize}
+
+\noindent
+\textbf{何時選用哪一種？}
+\begin{itemize}
+  \item 固定窗口取極值：單調隊列。
+  \item 線性包絡：斜率截距線性轉移 → CHT/Li Chao。
+  \item 多段/分組轉移且 argmin 單調：D\&C 優化。
+  \item 區間型兩段分裂 + $w(l,r)$ 滿足四邊形不等式：Knuth 優化。
+  \item 子集/位元 DP：Bitset 或 SOS。
+\end{itemize}
+
