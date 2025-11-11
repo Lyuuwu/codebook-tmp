@@ -1,0 +1,44 @@
+% 指數與取模（mod）之間的關係與常用公式
+
+\noindent
+\textbf{Euler 定理與指數化簡}
+\[
+\gcd(a,m)=1 \;\Rightarrow\; a^{\varphi(m)} \equiv 1 \pmod m.
+\]
+設 $e \equiv b \pmod{\varphi(m)}$。若 $\gcd(a,m)=1$ 且 $b$ 很大，常用以下化簡：
+\[
+a^b \equiv a^{e} \pmod m\quad(\text{若 } e=0\text{，可取 } e:=\varphi(m)).
+\]
+
+\noindent
+\textbf{Carmichael 函數與更強化簡}
+\[
+\text{對所有互質 } a,m:\; a^{\lambda(m)} \equiv 1 \pmod m,\quad x\equiv y\ (\bmod\ \lambda(m))\Rightarrow a^x\equiv a^y\ (\bmod\ m).
+\]
+分解 $m=\prod p_i^{k_i}$ 後
+\[
+\lambda(m)=\operatorname{lcm}\bigl(\lambda(p_1^{k_1}),\dots,\lambda(p_r^{k_r})\bigr),\quad
+\lambda(p^k)=\begin{cases}
+2^{k-2}, & p=2,\ k\ge 3,\\
+\varphi(p^k), & \text{其餘情形}.
+\end{cases}
+\]
+實務上，若 $\gcd(a,m)=1$，可把指數先對 $\lambda(m)$（或 $\varphi(m)$）取模，再用上式處理 $e=0$ 的情形。
+
+\noindent
+\textbf{乘法階（Multiplicative Order）}
+\[
+\operatorname{ord}_m(a)=\min\{t>0: a^t\equiv 1\ (\bmod\ m)\},\quad \operatorname{ord}_m(a)\mid \lambda(m)\mid \varphi(m).
+\]
+常用判別：$a^x\equiv a^y\ (\bmod\ m)$ 當且僅當 $x\equiv y\ (\bmod\ \operatorname{ord}_m(a))$（假設 $\gcd(a,m)=1$）。
+
+\noindent
+\textbf{模指數運算快速規則}
+\begin{align*}
+(a^x\bmod m)(a^y\bmod m) &\equiv a^{x+y}\pmod m,\\
+(a^x)^y &\equiv a^{xy}\pmod m,\\
+\gcd(a,m)=1,\; x\equiv y\ (\bmod\ \varphi(m)) &\Rightarrow a^x\equiv a^y\pmod m,\\
+\text{$p$ 為質數且 } \gcd(a,p)=1:&\; a^{k(p-1)+r}\equiv a^r\pmod p.
+\end{align*}
+若 $m=\prod p_i^{k_i}$，計算 $a^b\bmod m$ 可先各自求 $a^b\bmod p_i^{k_i}$（遇到不互質時可配合質因數分解與指數提取），再用中國剩餘定理合併。
+
