@@ -19,7 +19,7 @@
 \end{itemize}
 
 \noindent
-\textbf{Divide & Conquer DP 優化}
+\textbf{Divide and Conquer DP 優化}
 \begin{itemize}
   \item 型態：$\mathrm{dp}[k][i]=\min\limits_{j<i}\{\mathrm{dp}[k-1][j]+C(j,i)\}$。
   \item 條件：存在最優決策單調性 $\operatorname{opt}[k][i]\le \operatorname{opt}[k][i+1]$。
@@ -54,4 +54,3 @@
   \item 區間型兩段分裂 + $w(l,r)$ 滿足四邊形不等式：Knuth 優化。
   \item 子集/位元 DP：Bitset 或 SOS。
 \end{itemize}
-
